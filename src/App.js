@@ -37,7 +37,7 @@ function App() {
               }}
               className="w-24 h-24 bg-gradient-to-r from-indigo-900 to-emerald-500 rounded-full flex items-center justify-center"
             >
-              <span className="text-white font-bold text-xl">P</span>
+              <span className="text-white font-bold text-xl">P | J</span>
             </motion.div>
           </div>
         ) : (

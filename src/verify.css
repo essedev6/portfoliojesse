@@ -1,0 +1,11 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .test-verify {
+    @apply bg-celluloid-obsidian text-celluloid-gold;
+    user-select: none;
+  }
+}

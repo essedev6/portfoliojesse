@@ -1,6 +1,6 @@
 {
-  "short_name": "Mi Portfolio",
-  "name": "Jesse Nyangao Portfolio",
+  "short_name": "Jesse Portfolio",
+  "name": "Jesse Nyangao | Portfolio",
   "icons": [
     {
       "src": "favicon.ico",
@@ -18,8 +18,14 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#0D9488",
+  "background_color": "#F0FDF4",
+  "description": "Welcome to Jesse Nyangao's portfolio, showcasing web development, UI/UX design, and software projects.",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "related_applications": [],
+  "prefer_related_applications": false
 }
+

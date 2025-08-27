@@ -11,12 +11,12 @@ const projects = [
     live: '#',
   },
   {
-    title: 'Portfolio Website',
-    description: 'A sleek portfolio for a creative photographer.',
-    image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+    title: 'Survey Website',
+    description: 'A sleek Martenal Survey site for hospitals and researchers.',
+    image: '/assets/survey.png',
     tags: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-    github: '#',
-    live: '#',
+    github: 'https://github.com/essedev6/Maternal-survey',
+    live: 'https://maternal-survey.vercel.app/',
   },
   {
     title: 'Mobile App UI',
@@ -101,7 +101,7 @@ const Portfolio = () => {
                     rel="noopener noreferrer"
                     className="flex items-center text-gray-700 dark:text-gray-300 hover:text-emerald-500 transition-colors"
                   >
-                    <FiExternalLink className="mr-2" /> Live Demo
+                    <FiExternalLink className="mr-2" /> live demo
                   </a>
                 </div>
               </div>

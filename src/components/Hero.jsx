@@ -56,7 +56,7 @@ const Hero = () => {
               <div className="absolute inset-4 rounded-full bg-gradient-to-r from-indigo-900 to-emerald-500 animate-spin-slow"></div>
               <div className="absolute inset-8 rounded-full bg-gray-900 dark:bg-gray-800 flex items-center justify-center overflow-hidden">
                 <img
-                  src="assets/Profile Pic Jesse.jpg"
+                  src="assets/ProfilePic.jpg"
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

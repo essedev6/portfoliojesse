@@ -7,8 +7,8 @@ const projects = [
     description: 'A modern Movie streaming experience with seamless navigation and no Ads.',
     image: '/assets/WahalaPic.png',
     tags: ['React', 'Node.js', 'MongoDB'],
-    github: '#',
-    live: '#',
+    github: 'https://github.com/essedev6/wahala2',
+    live: 'https://wahala2.vercel.app/',
   },
   {
     title: 'Survey Website',

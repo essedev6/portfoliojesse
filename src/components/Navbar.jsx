@@ -132,7 +132,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
             <div className="absolute bottom-20 left-0 right-0 flex justify-center space-x-6">
               <a
-                href="https://github.com"
+                href="https://github.com/essedev6/portfoliojesse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full hover:bg-gray-800 transition-colors"
@@ -140,7 +140,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 <FaGithub className="w-6 h-6" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="www.linkedin.com/in/jesse-nyangao-927428242"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full hover:bg-gray-800 transition-colors"

@@ -88,7 +88,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
               <motion.a
                 whileHover={{ y: -2 }}
-                href="https://github.com"
+                href="https://github.com/essedev6/portfoliojesse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"

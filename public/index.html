@@ -25,11 +25,6 @@
     <!-- Fonts & Styles -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <style>
-      :root {
-        --theme: #0D9488;
-        --theme-tint: rgba(13, 148, 136, 0.08);
-      }
-
       body {
         font-family: 'Poppins', sans-serif;
         background-color: #F0FDF4;
@@ -39,107 +34,65 @@
       }
 
       
-      #jesse-chat-toggle {
+      .chatbot-box {
         position: fixed;
-        bottom: 100px;     
-        right: 24px;        
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: var(--theme);
-        color: #fff;
-        border: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        cursor: pointer;
-        z-index: 10010;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-      }
-      #jesse-chat-toggle:active {
-        transform: translateY(1px);
-      }
-      #jesse-chat-toggle svg {
-        width: 24px;
-        height: 24px;
-        fill: currentColor;
-      }
-
-      
-      #jesse-chat-panel {
-        position: fixed;
-        bottom: 160px;     
-        right: 24px;
-        width: 340px;      
-        max-width: 92vw;
-        height: 480px;   
-        max-height: 80vh;
-        background: #fff;
-        border: 1px solid var(--theme);
-        border-radius: 14px;
-        box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+        bottom: 120px;  
+        right: 30px;     
+        width: 320px;
+        height: 480px;
+        background: #ffffff;
+        border: 2px solid #0D9488;
+        border-radius: 16px;
         overflow: hidden;
-        z-index: 10009;
-        display: none;     /* toggled via JS */
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+        z-index: 9999;
       }
 
       
-      #jesse-chat-header {
-        background: var(--theme-tint);
-        border-bottom: 1px solid rgba(13,148,136,0.25);
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 10px 0 12px;
-        font-weight: 600;
-        color: #0a3b36;
-      }
-      #jesse-chat-close {
-        appearance: none;
-        background: transparent;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        color: #0a3b36;
-      }
+     .chatbot-toggle {
+  position: fixed;
+  bottom: 19px;
+  right: 120px;
 
-      #jesse-chat-iframe {
-        display: block;
-        width: 100%;
-        height: calc(100% - 44px);
-        border: 0;
-        background: #fff;
-      }
+  background-color: #0D9488;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  z-index: 10000;
 
-      /* Fallback area if iframe cannot load */
-      #jesse-chat-fallback {
+ 
+  animation: waveMotion 8s infinite ease-in-out;
+}
+
+
+.chatbot-toggle.open {
+  animation: none !important;
+}
+
+/* Keyframes for wavy motion */
+@keyframes waveMotion {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(-5px) scale(1.05) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(-5px) scale(1.05) rotate(3deg);
+  }
+}
+
+
+      .chatbot-box.hidden {
         display: none;
-        height: calc(100% - 44px);
-        padding: 14px;
-        font-size: 14px;
-        color: #0a3b36;
-        background: var(--theme-tint);
-      }
-      #jesse-chat-fallback a {
-        color: var(--theme);
-        font-weight: 600;
-        text-decoration: none;
-      }
-
-    
-      @media (max-width: 420px) {
-        #jesse-chat-panel {
-          right: 12px;
-          bottom: 120px;
-          width: 92vw;
-          height: 65vh;
-        }
-        #jesse-chat-toggle {
-          right: 12px;
-          bottom: 90px;
-        }
       }
     </style>
   </head>
@@ -147,86 +100,31 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
-    <!-- ===== Floating Chat Button + Panel (iframe embed) ===== -->
-    <button id="jesse-chat-toggle" aria-label="Open chat">
-      <!-- chat bubble icon -->
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z"></path>
-      </svg>
-    </button>
-
-    <div id="jesse-chat-panel" role="dialog" aria-label="Chat panel" aria-modal="false">
-      <div id="jesse-chat-header">
-        <span>Ask Jesse’s AI</span>
-        <button id="jesse-chat-close" aria-label="Close chat">×</button>
-      </div>
-
-      <!-- Primary embed -->
-      <iframe
-        id="jesse-chat-iframe"
-        title="Jesse RAG Chat"
+    <!-- Floating Chatbot -->
+    <div id="chatbot" class="chatbot-box hidden">
+      <iframe 
         src="https://chat-morph-ai.vercel.app/izwh7q2emn11ehww88p9q/chat"
-        referrerpolicy="no-referrer"
-        loading="lazy"
+        title="Chatmorph AI Chatbot"
+        width="100%"
+        height="100%"
+        style="border: none;"
       ></iframe>
-
-      <!-- Fallback content if iframe fails -->
-      <div id="jesse-chat-fallback">
-        Having trouble loading the chat here. 
-        <br /><br />
-        You can open it in a new tab instead:
-        <br />
-        <a href="https://chat-morph-ai.vercel.app/izwh7q2emn11ehww88p9q/chat" target="_blank" rel="noopener noreferrer">
-          Open chat
-        </a>
-      </div>
     </div>
 
+    <!-- Toggle Button -->
+    <button id="chatbotToggle" class="chatbot-toggle">💬</button>
+
     <script>
-      (function () {
-        const btn = document.getElementById('jesse-chat-toggle');
-        const panel = document.getElementById('jesse-chat-panel');
-        const closeBtn = document.getElementById('jesse-chat-close');
-        const iframe = document.getElementById('jesse-chat-iframe');
-        const fallback = document.getElementById('jesse-chat-fallback');
+      const toggleBtn = document.getElementById('chatbotToggle');
+      const chatbotBox = document.getElementById('chatbot');
 
-        const openPanel = () => {
-          panel.style.display = 'block';
-          // Attempt to detect if the iframe is blocked by X-Frame-Options / CSP:
-          // If it hasn't loaded within a short window, show a fallback link.
-          let loaded = false;
-          const onLoad = () => { loaded = true; iframe.removeEventListener('load', onLoad); };
-          iframe.addEventListener('load', onLoad);
-          setTimeout(() => {
-            if (!loaded) {
-              // show fallback message
-              iframe.style.display = 'none';
-              fallback.style.display = 'block';
-            }
-          }, 1200);
-        };
-
-        const closePanel = () => {
-          panel.style.display = 'none';
-          // reset fallback state for next open
-          iframe.style.display = 'block';
-          fallback.style.display = 'none';
-        };
-
-        btn.addEventListener('click', () => {
-          if (panel.style.display === 'block') {
-            closePanel();
-          } else {
-            openPanel();
-          }
-        });
-        closeBtn.addEventListener('click', closePanel);
-      })();
+      toggleBtn.addEventListener('click', () => {
+        chatbotBox.classList.toggle('hidden');
+      });
     </script>
-
-  
   </body>
 </html>
+
 
 
 

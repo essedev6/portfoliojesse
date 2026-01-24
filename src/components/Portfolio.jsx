@@ -39,17 +39,17 @@ const projects = [
     status: 'soon'
   },
   {
-    title: 'E-Commerce Platform',
-    description: 'Full-featured online shopping platform with payment integration and admin panel.',
-    image: '/assets/ecommerce.png',
+    title: 'Smart Mobility Commerce Platform',
+    description: 'E-commerce platform that combines ride-hailing and car booking into a single, seamless web experience. Built with a focus on usability, secure payments, real-time availability, and scalable architecture, enabling users to book rides, reserve vehicles, and manage transactions efficiently.',
+    image: '/assets/fiika.png',
     tags: ['Next.js', 'Stripe', 'PostgreSQL'],
     github: '#',
     live: '#',
     status: 'soon'
   },
   {
-    title: 'Task Management App',
-    description: 'Collaborative task management with real-time updates and team features.',
+    title: 'Data Management System',
+    description: 'A smart hotspot tool that quietly keeps laptops from wasting data by stopping heavy background internet usage, helping users stay online longer without burning through their bundles.',
     image: '/assets/hg.png',
     tags: ['React', 'Firebase', 'Material UI'],
     github: '#',

@@ -9,9 +9,28 @@ import Services from './components/Services';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import './App.css'
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+   const [darkMode, setDarkMode] = useState(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme === 'dark';
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  // Apply theme class to document root and save preference
+  useEffect(() => {
+    document.documentElement.className = darkMode ? 'dark' : 'light';
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
+
+  // Toggle theme function
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +42,8 @@ function App() {
   }, []);
 
   return (
-    <div className={`${darkMode ? 'dark' : ''}`}>
+    
+     
       <div className="dark:bg-gray-900 dark:text-gray-100 bg-gray-50 text-gray-900 min-h-screen">
         {isLoading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
@@ -42,7 +62,7 @@ function App() {
           </div>
         ) : (
           <>
-            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+             <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
             <Hero />
             <About />
             <Skills />
@@ -54,7 +74,7 @@ function App() {
           </>
         )}
       </div>
-    </div>
+    
   );
 }
 

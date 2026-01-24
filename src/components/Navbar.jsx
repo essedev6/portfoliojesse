@@ -3,8 +3,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { FiMoon, FiSun, FiMenu, FiX } from 'react-icons/fi';
 import { FaGithub, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
+import '../App.css';
 
-const Navbar = ({ darkMode, setDarkMode }) => {
+const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -75,15 +76,15 @@ const Navbar = ({ darkMode, setDarkMode }) => {
             <div className="flex items-center space-x-4">
               <motion.button
                 whileTap={{ scale: 0.9 }}
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Toggle dark mode"
-              >
-                {darkMode ? (
-                  <FiSun className="w-5 h-5" />
-                ) : (
-                  <FiMoon className="w-5 h-5" />
-                )}
+                onClick={toggleTheme}
+          className="theme-toggle-btn"
+          aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+        >
+          {darkMode ? (
+            <FiSun size={28} className="theme-icon" />
+          ) : (
+            <FiMoon size={28} className="theme-icon" />
+          )}
               </motion.button>
 
               <motion.a

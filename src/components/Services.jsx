@@ -24,7 +24,7 @@ const services = [
   },
   {
     icon: <FiSmartphone />,
-    title: 'Mobile Design',
+    title: 'Mobile App Design',
     description:
       'Designing mobile experiences that are both functional and delightful to use.',
   },

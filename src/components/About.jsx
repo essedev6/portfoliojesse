@@ -3,9 +3,9 @@ import { FiAward, FiBriefcase, FiUser } from 'react-icons/fi';
 
 const About = () => {
   const stats = [
-    { icon: <FiBriefcase />, value: '10+', label: 'Projects Completed' },
-    { icon: <FiUser />, value: '10+', label: 'Happy Clients' },
-    { icon: <FiAward />, value: '2+', label: 'Years Experience' },
+    { icon: <FiBriefcase />, value: '20+', label: 'Projects Completed' },
+    { icon: <FiUser />, value: '15+', label: 'Happy Clients' },
+    { icon: <FiAward />, value: '3+', label: 'Years Experience' },
   ];
 
   return (
@@ -61,7 +61,7 @@ const About = () => {
               Who <span className="text-emerald-500">am I?</span>
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
-              I'm a passionate designer and developer with over 2 years of
+              I'm a passionate designer and developer with over 3 years of
               experience creating digital experiences that matter. My approach
               combines technical expertise with creative vision to deliver
               solutions that are both beautiful and functional.

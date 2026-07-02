@@ -23,10 +23,64 @@ const projects = [
   {
     title: 'Survey Website',
     description: 'A sleek Maternal Survey site for hospitals and researchers.',
-    image: '/assets/survey.png',
+    image: '/assets/nutrition.png',
     tags: ['Next.js', 'Tailwind CSS', 'MongoDB'],
     github: 'https://github.com/essedev6/Maternal-survey',
     live: 'https://maternal-survey.vercel.app/',
+    status: 'live'
+  },
+   {
+    title: 'Graphic Design Portfolio',
+    description: 'My Graphic Design Portfolio site.',
+    image: '/assets/portfolio.png',
+    tags: ['Next.js', 'Tailwind CSS', 'MongoDB'],
+    github: 'https://github.com/essedev6/',
+    live: 'https://essejacques.netlify.app/',
+    status: 'live'
+  },
+   {
+    title: 'Enclame',
+    description: 'A Kenyan-based Therapy Web Platform site for patients and therapists to connect and schedule appointments.',
+    image: '/assets/therapy.png',
+    tags: ['Next.js', 'Tailwind CSS',],
+    github: 'https://github.com/essedev6/',
+    live: 'https://encalme.netlify.app/',
+    status: 'live'
+  },
+  {
+    title: 'Data Analyst Portfolio',
+    description: 'Data Analyst Portfolio site I develped for a client in the Data Analytics field.',
+    image: '/assets/portfolio2.png',
+    tags: ['Next.js', 'Tailwind CSS',],
+    github: 'https://github.com/essedev6/',
+    live: 'https://morganmwirotsi.netlify.app/',
+    status: 'live'
+  },
+   {
+    title: 'NCK Exam Simulator',
+    description: 'A Kenyan-based NCK Exam Simulator site for nursing students to practice and prepare for the NCK exam.',
+    image: '/assets/nck.png',
+    tags: ['Next.js', 'Tailwind CSS',],
+    github: 'https://github.com/essedev6/',
+    live: 'https://ncksimulator.netlify.app/',
+    status: 'live'
+  },
+  {
+    title: 'GOSTRA',
+    description: 'A Secure Messaging App for users to communicate securely. and privatley, with every conversation encrypted, and disaperaring messages.',
+    image: '/assets/gostra.png',
+    tags: ['React-Native', 'Firebase', 'Material UI'],
+    github: 'https://github.com/essedev6/',
+    live: 'https://gostra.netlify.app/',
+    status: 'live'
+  },
+  {
+    title: 'Parsoona',
+    description: 'A TikTok-style reading experience for poetry and short stories — where mood drives discovery, and every thought can become art.',
+    image: '/assets/parsoona.png',
+    tags: ['React-Native', 'Firebase', 'Material UI'],
+    github: 'https://github.com/essedev6/',
+    live: 'https://parsoona.netlify.app/',
     status: 'live'
   },
   {

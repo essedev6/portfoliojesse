@@ -420,7 +420,7 @@ export default function ProjectsCarousel({
 
       {/* Cards */}
       <ul
-        role="list"
+        
         className="relative m-0 h-full w-full list-none p-0"
         style={{ transformStyle: 'preserve-3d' }}
       >
@@ -428,7 +428,7 @@ export default function ProjectsCarousel({
           const offset = getOffset(index, activeIndex, length);
           if (Math.abs(offset) > maxOffset) return null;
           return (
-            <li key={project.id} role="listitem" className="contents">
+            <li key={project.id} className="contents">
               <ProjectCard
                 project={project}
                 offset={offset}

@@ -1,103 +1,123 @@
-import { motion } from 'framer-motion';
-import { FiAward, FiBriefcase, FiUser } from 'react-icons/fi';
+import React, { useEffect, useState } from "react";
 
-const About = () => {
-  const stats = [
-    { icon: <FiBriefcase />, value: '20+', label: 'Projects Completed' },
-    { icon: <FiUser />, value: '15+', label: 'Happy Clients' },
-    { icon: <FiAward />, value: '3+', label: 'Years Experience' },
-  ];
+
+
+const galleryImages = [
+  { src: "/me3.png", alt: "Portrait with headphones" },
+  { src: "/me2.png", alt: "Domini brand website mockup" },
+  { src: "/me1.png", alt: "Portrait working at a desk" },
+];
+
+export default function About() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const t = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(t);
+  }, []);
 
   return (
-    <section id="about" className="py-20 bg-gray-100 dark:bg-gray-800/50">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            About <span className="text-emerald-500">Me</span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Get to know more about my journey and what drives me in this creative
-            field.
-          </p>
-        </motion.div>
+    <section className="relative w-full overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/back2.jpg')" }}
+        aria-hidden="true"
+      />
+      {/* Soft warm wash for legibility */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent"
+        aria-hidden="true"
+      />
 
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:w-1/2 relative"
-          >
-            <div className="relative rounded-xl overflow-hidden shadow-2xl">
-              <img
-                src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                alt="About Me"
-                className="w-full h-auto"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent flex items-end p-8">
-                <h3 className="text-2xl font-bold text-white">
-                  Passionate About Creating Digital Experiences
-                </h3>
-              </div>
-            </div>
-            <div className="absolute -z-10 -bottom-6 -left-6 w-full h-full border-2 border-emerald-500 rounded-xl"></div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="lg:w-1/2"
-          >
-            <h3 className="text-2xl font-bold mb-6">
-              Who <span className="text-emerald-500">am I?</span>
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-8">
-              I'm a passionate designer and developer with over 3 years of
-              experience creating digital experiences that matter. My approach
-              combines technical expertise with creative vision to deliver
-              solutions that are both beautiful and functional.
+      <div className="relative z-10 px-6 sm:px-10 lg:px-20 pt-20 sm:pt-28 pb-16 sm:pb-24">
+        {/* Top: headline + copy */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+          {/* Left column: eyebrow + headline */}
+          <div className="lg:col-span-6">
+            <p
+              className={[
+                "text-white font-semibold text-sm sm:text-base tracking-wide mb-4",
+                "transition-all duration-700 ease-out",
+                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
+              style={{ transitionDelay: "80ms" }}
+            >
+              Behind the Design
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -5 }}
-                  className="bg-white dark:bg-gray-700 p-6 rounded-lg shadow-md text-center"
-                >
-                  <div className="text-3xl text-emerald-500 mb-2 flex justify-center">
-                    {stat.icon}
-                  </div>
-                  <h4 className="text-xl font-bold mb-1">{stat.value}</h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact"
-              className="inline-block px-8 py-3 bg-gradient-to-r from-indigo-900 to-emerald-600 text-white rounded-lg font-medium shadow-lg hover:shadow-emerald-500/20 transition-all"
+            <h2
+              className={[
+                "text-white font-extrabold leading-[1.1]",
+                "text-3xl sm:text-4xl lg:text-5xl xl:text-[3.1rem]",
+                "transition-all duration-700 ease-out",
+                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+              ].join(" ")}
+              style={{ transitionDelay: "180ms" }}
             >
-              Contact Me
-            </motion.a>
-          </motion.div>
+              Crafting effortless moments that bring ease to your day.
+            </h2>
+          </div>
+
+          {/* Right column: paragraph + label + CTA */}
+          <div className="lg:col-span-6 lg:pt-2">
+            <p
+              className={[
+                "text-neutral-900 text-base sm:text-lg leading-relaxed max-w-xl",
+                "transition-all duration-700 ease-out",
+                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
+              style={{ transitionDelay: "280ms" }}
+            >
+              I'm a passionate designer and developer with over 3 years of
+              experience creating digital experiences that matter. My
+              approach combines technical expertise with creative vision to
+              deliver solutions that are both beautiful and functional.
+            </p>
+
+            <div
+              className={[
+                "mt-8 sm:mt-10 flex items-center justify-between gap-6 max-w-xl",
+                "transition-all duration-700 ease-out",
+                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+              ].join(" ")}
+              style={{ transitionDelay: "380ms" }}
+            >
+              <span className="font-serif italic text-neutral-800 text-base sm:text-lg leading-snug">
+                Designing for
+                <br />
+                daily ease
+              </span>
+
+              <a
+                href="#about-me"
+                className="group inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-300 transition-colors rounded-full pl-6 pr-2 py-2"
+              >
+                <span className="text-neutral-900 font-semibold text-sm sm:text-base">
+                  About Me
+                </span>
+                <span className="flex items-center justify-center w-9 h-9 rounded-full bg-neutral-900 text-white transition-transform group-hover:translate-x-0.5">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
         </div>
+
+       
       </div>
     </section>
   );
-};
-
-export default About;
+}

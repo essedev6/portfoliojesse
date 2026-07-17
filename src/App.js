@@ -3,10 +3,12 @@ import { motion} from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
-import Portfolio from './components/Portfolio';
+import Cta from './components/Cta';
+
+
 import Services from './components/Services';
-import Contact from './components/Contact';
+import ProjectsCarousel from './components/ProjectsCarosel';
+
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css'
@@ -44,7 +46,7 @@ function App() {
   return (
     
      
-      <div className="dark:bg-gray-900 dark:text-gray-100 bg-gray-50 text-gray-900 min-h-screen">
+      <div className="dark:bg-gradient-to-r dark:from-[#866E55] dark:to-[#E7CEAF] dark:text-gray-100 bg-white text-gray-900 min-h-screen">
         {isLoading ? (
           <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
             <motion.div
@@ -65,10 +67,11 @@ function App() {
              <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
             <Hero />
             <About />
-            <Skills />
-            <Portfolio />
+            <ProjectsCarousel />
+            
             <Services />
-            <Contact />
+            <Cta />
+            
             <Footer />
             <ScrollToTop />
           </>

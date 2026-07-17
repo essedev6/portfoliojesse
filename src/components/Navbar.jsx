@@ -11,11 +11,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -34,26 +30,28 @@ const Navbar = ({ darkMode, toggleTheme }) => {
   return (
     <>
       <header
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`fixed w-full z-50 transition-all duration-500 ${
           scrolled
-            ? 'dark:bg-gray-900/90 bg-white/90 backdrop-blur-sm py-3 shadow-lg'
-            : 'py-5'
+            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-3 shadow-sm'
+            : 'bg-transparent py-5'
         }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
+          {/* Logo */}
           <motion.a
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             href="#home"
-            className="text-2xl font-bold bg-gradient-to-r from-indigo-900 to-emerald-500 bg-clip-text text-transparent"
+            className="text-xl font-bold text-white"
           >
-           Mi Portfolio<span className="text-emerald-500">.</span>
+            FolioBox
           </motion.a>
 
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             <nav className="hidden md:block">
-              <ul className="flex space-x-8">
+              <ul className="flex items-center space-x-8">
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}
@@ -63,44 +61,70 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                   >
                     <a
                       href={item.href}
-                      className="font-medium hover:text-emerald-500 transition-colors relative group"
+                      className="text-sm font-medium text-white/80 hover:text-white transition-colors duration-300"
                     >
                       {item.name}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-500 transition-all duration-300 group-hover:w-full"></span>
                     </a>
                   </motion.li>
                 ))}
               </ul>
             </nav>
 
+            {/* Right side actions */}
             <div className="flex items-center space-x-4">
+              {/* Theme toggle */}
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleTheme}
-          className="theme-toggle-btn"
-          aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
-        >
-          {darkMode ? (
-            <FiSun size={28} className="theme-icon" />
-          ) : (
-            <FiMoon size={28} className="theme-icon" />
-          )}
+                className="text-white/80 hover:text-white transition-colors"
+                aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
+              >
+                {darkMode ? (
+                  <FiSun size={20} />
+                ) : (
+                  <FiMoon size={20} />
+                )}
               </motion.button>
 
+              {/* GitHub */}
               <motion.a
-                whileHover={{ y: -2 }}
+                whileHover={{ scale: 1.05 }}
                 href="https://github.com/essedev6/portfoliojesse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="text-white/80 hover:text-white transition-colors"
               >
                 <FaGithub className="w-5 h-5" />
+              </motion.a>
+
+              {/* CTA Button — pill shape matching screenshot */}
+              <motion.a
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                href="#contact"
+                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100"
+              >
+                Get in touch
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
               </motion.a>
             </div>
           </div>
 
+          {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            className="md:hidden p-2 text-white"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
@@ -123,7 +147,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-2xl font-medium hover:text-emerald-500 transition-colors"
+                  className="text-2xl font-medium text-white/80 hover:text-white transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -136,7 +160,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 href="https://github.com/essedev6/portfoliojesse"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full hover:bg-gray-800 transition-colors"
+                className="p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
               >
                 <FaGithub className="w-6 h-6" />
               </a>
@@ -144,7 +168,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 href="https://www.linkedin.com/in/jesse-nyangao-927428242/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full hover:bg-gray-800 transition-colors"
+                className="p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
               >
                 <FaLinkedinIn className="w-6 h-6" />
               </a>
@@ -152,14 +176,14 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full hover:bg-gray-800 transition-colors"
+                className="p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
               >
                 <FaTwitter className="w-6 h-6" />
               </a>
             </div>
 
             <button
-              className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-800 transition-colors"
+              className="absolute top-6 right-6 p-2 text-white"
               onClick={() => setIsOpen(false)}
             >
               <FiX className="w-6 h-6" />

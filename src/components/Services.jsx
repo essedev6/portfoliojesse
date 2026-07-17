@@ -2,47 +2,7 @@ import React, { useEffect, useState } from "react";
 
 
 
-const ICONS = {
-  uiux: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="14" rx="2" />
-      <path d="M3 9h18" />
-      <circle cx="7" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
-      <circle cx="9.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
-    </svg>
-  ),
-  code: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="8 6 2 12 8 18" />
-      <polyline points="16 6 22 12 16 18" />
-    </svg>
-  ),
-  mobile: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="7" y="2" width="10" height="20" rx="2" />
-      <line x1="11" y1="18" x2="13" y2="18" />
-    </svg>
-  ),
-  seo: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="11" r="7" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-      <path d="M8 11l2 2 4-4" />
-    </svg>
-  ),
-  marketing: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6l-4 4H4a1 1 0 0 0-1 1z" />
-      <path d="M16 8a4 4 0 0 1 0 8" />
-      <path d="M19 5a8 8 0 0 1 0 14" />
-    </svg>
-  ),
-  brand: (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" />
-    </svg>
-  ),
-};
+
 
 const DEFAULT_SERVICES = [
   {

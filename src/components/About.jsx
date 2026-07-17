@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 
 
 
-const galleryImages = [
-  { src: "/me3.png", alt: "Portrait with headphones" },
-  { src: "/me2.png", alt: "Domini brand website mockup" },
-  { src: "/me1.png", alt: "Portrait working at a desk" },
-];
+
 
 export default function About() {
   const [mounted, setMounted] = useState(false);

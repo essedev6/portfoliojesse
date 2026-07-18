@@ -170,12 +170,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ---------- Section 2: dark "trusted by" bar ---------- */}
-      {/* Its own independent rounded container, pulled up slightly so it
-          sits flush against the image section's rounded bottom edge. */}
+      
+
       <div
         className={[
-          "relative z-10 min-h-[18vh] md:min-h-[18vh] lg:min-h-[44vh] w-full  bg-[#130d11] rounded-b-[3rem] -mt-20 md:rounded-b-[3rem] lg:rounded-b-[6rem] -mt-6",
+          "relative z-10 min-h-[18vh] md:min-h-[18vh] lg:min-h-[44vh] w-full  bg-[#130d11] rounded-b-[3rem] -mt-22 md:rounded-b-[3rem] lg:rounded-b-[6rem] -mt-20",
           "px-6 sm:px-10 lg:px-20 pt-12 lg:pt-24 sm:pt-12 pb-1 sm:pb-6",
           "flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10 md:gap-20 lg:gap-36",
           "transition-all duration-700 ease-out",

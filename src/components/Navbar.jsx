@@ -150,7 +150,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25 }}
-            className="fixed inset-0 bg-gray-900/95 z-40 md:hidden pt-20 px-6"
+            className="fixed inset-0 bg-[#1A1719E6] z-40 md:hidden pt-20 px-6"
           >
             <nav className="flex flex-col space-y-8">
               {navItems.map((item) => (
@@ -163,7 +163,31 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                   {item.name}
                 </a>
               ))}
+
             </nav>
+
+            {/* CTA Button */}
+              <motion.a
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                href="/contact"
+                className="flex items-center justify-center mt-64 gap-2 rounded-full bg-white px-4 py-3 text-xl font-semibold text-gray-900 transition-all hover:bg-gray-100"
+              >
+                Get in touch
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </motion.a>
 
             <div className="absolute bottom-20 left-0 right-0 flex justify-center space-x-6">
               <a

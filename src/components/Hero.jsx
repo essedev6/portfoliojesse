@@ -67,7 +67,7 @@ export default function Hero() {
     >
       {/* ---------- Section 1: portrait image ---------- */}
       {/* Its own independent rounded container — rounded on all corners */}
-      <div className="relative z-20 w-full min-h-[70vh] md:min-h-[50vh] lg:min-h-[115vh] overflow-hidden rounded-b-[3rem] md:rounded-b-[3rem] lg:rounded-b-[6rem] flex flex-col">
+      <div className="relative z-20 w-full min-h-[70vh] md:min-h-[50vh] lg:min-h-[122vh] overflow-hidden rounded-b-[3rem] md:rounded-b-[3rem] lg:rounded-b-[6rem] flex flex-col">
         {/* Background portrait image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -88,7 +88,7 @@ export default function Hero() {
 
         {/* Content wrapper (drifts up slightly on scroll) */}
         <div
-          className="relative z-10 flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-20 pt-40 sm:pt-48 lg:pt-70 pb-10"
+          className="relative z-10 flex-1 flex flex-col justify-between px-6 sm:px-10 lg:px-20 pt-40 sm:pt-48 lg:pt-60 pb-10"
           style={{ transform: `translateY(-${translate}px)`, transition: "transform 0.05s linear" }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 md:grid-cols-2 gap-6 sm:gap-10 md:gap-20 lg:gap-28 items-start">

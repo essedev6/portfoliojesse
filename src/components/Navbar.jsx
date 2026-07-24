@@ -19,39 +19,47 @@ const Navbar = ({ darkMode, toggleTheme }) => {
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Work', href: '#portfolio' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Projects', href: '/portfolio' },
+    { name: 'Services', href: '/services' },
+    
   ];
+
+  // Glassmorphism base classes — no backdrop color, just blur + border
+  const glassBaseLogo = 'bg-transparent shadow-lg';
+  const glassBase = 'bg-white/5 border border-white/10 backdrop-blur-xl shadow-lg';
+  const glassScrolled = 'bg-white/5 border border-white/10 backdrop-blur-2xl shadow-xl';
 
   return (
     <>
       <header
         className={`fixed w-full z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md py-3 shadow-sm'
-            : 'bg-transparent py-5'
+          scrolled ? 'py-3' : 'py-5'
         }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo — distinct glass pill */}
           <motion.a
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            href="#home"
-            className="text-xl font-bold text-white"
+            href="/"
+            className={`rounded-[2rem] px-5 py-2.5 text-2xl font-bold font-bauhaus text-white transition-all duration-500 ${
+              scrolled ? glassScrolled : glassBaseLogo
+            }`}
           >
-            FolioBox
+            essedev
           </motion.a>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            <nav className="hidden md:block">
-              <ul className="flex items-center space-x-8">
+          {/* Desktop Nav — center links in distinct glass pill */}
+          <div className="hidden md:flex items-center ml-auto">
+            <nav
+              className={`rounded-full px-6 py-2.5 transition-all duration-500 ${
+                scrolled ? glassScrolled : glassBase
+              }`}
+            >
+              <ul className="flex items-center space-x-6">
                 {navItems.map((item, index) => (
                   <motion.li
                     key={item.name}
@@ -61,7 +69,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                   >
                     <a
                       href={item.href}
-                      className="text-sm font-medium text-white/80 hover:text-white transition-colors duration-300"
+                      className="text-sm font-medium text-white/70 hover:text-white transition-colors duration-300"
                     >
                       {item.name}
                     </a>
@@ -69,49 +77,51 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 ))}
               </ul>
             </nav>
+          </div>
 
-            {/* Right side actions */}
-            <div className="flex items-center space-x-4">
+          {/* Right side — CTA + icons in distinct glass pill */}
+          <div className="hidden md:flex items-center space-x-3 ml-2">
+            <div
+              className={`flex items-center space-x-3 rounded-full px-4 py-2 transition-all duration-500 ${
+                scrolled ? glassScrolled : glassBase
+              }`}
+            >
               {/* Theme toggle */}
               <motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleTheme}
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
                 aria-label={`Switch to ${darkMode ? 'light' : 'dark'} mode`}
               >
-                {darkMode ? (
-                  <FiSun size={20} />
-                ) : (
-                  <FiMoon size={20} />
-                )}
+                {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
               </motion.button>
 
               {/* GitHub */}
               <motion.a
                 whileHover={{ scale: 1.05 }}
-                href="https://github.com/essedev6/portfoliojesse"
+                href="https://github.com/essedev6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-colors"
+                className="text-white/70 hover:text-white transition-colors"
               >
-                <FaGithub className="w-5 h-5" />
+                <FaGithub className="w-[18px] h-[18px]" />
               </motion.a>
 
-              {/* CTA Button — pill shape matching screenshot */}
+              {/* CTA Button */}
               <motion.a
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                href="#contact"
-                className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-all hover:bg-gray-100"
+                href="/contact"
+                className="flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-semibold text-gray-900 transition-all hover:bg-gray-100"
               >
                 Get in touch
                 <svg
-                  width="16"
-                  height="16"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 >

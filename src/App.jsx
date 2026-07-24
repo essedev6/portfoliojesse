@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import AboutPage from './pages/About';
+import ContactPage from './pages/contact';
+import ProjectsPage from './pages/Projects';
+import ServicesPage from './pages/Services';
 import { motion} from 'framer-motion';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Cta from './components/Cta';
 
-
-import Services from './components/Services';
-import ProjectsCarousel from './components/ProjectsCarosel';
 
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -48,7 +48,7 @@ function App() {
      
       <div className="dark:bg-gradient-to-r dark:from-[#866E55] dark:to-[#E7CEAF] dark:text-gray-100 bg-white text-gray-900 min-h-screen">
         {isLoading ? (
-          <div className="fixed inset-0 flex items-center justify-center bg-gray-900 z-50">
+          <div className="fixed inset-0 flex items-center justify-center bg-[#1A1719] z-50">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ rotate: 360, scale: 1 }}
@@ -57,24 +57,29 @@ function App() {
                 stiffness: 260,
                 damping: 20,
               }}
-              className="w-24 h-24 bg-gradient-to-r from-indigo-900 to-emerald-500 rounded-full flex items-center justify-center"
+              className="w-24 h-24 bg-gradient-to-r from-[#2c1f28] to-[#bd875e] rounded-full flex items-center justify-center"
             >
               <span className="text-white font-bold text-xl">P | J</span>
             </motion.div>
           </div>
         ) : (
-          <>
-             <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
-            <Hero />
-            <About />
-            <ProjectsCarousel />
-            
-            <Services />
-            <Cta />
-            
-            <Footer />
-            <ScrollToTop />
-          </>
+       <>
+  <Navbar
+    darkMode={darkMode}
+    toggleTheme={toggleTheme}
+  />
+
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<AboutPage />} />
+    <Route path="/projects" element={<ProjectsPage />} />
+    <Route path="/services" element={<ServicesPage />} />
+    <Route path="/contact" element={<ContactPage />} />
+  </Routes>
+
+  <Footer />
+  <ScrollToTop />
+</>
         )}
       </div>
     

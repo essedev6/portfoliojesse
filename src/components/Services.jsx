@@ -1,8 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-
-
-
+const ICONS = {
+  uiux: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="14" rx="2" />
+      <path d="M3 9h18" />
+      <circle cx="7" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+      <circle cx="9.5" cy="6.5" r="0.6" fill="currentColor" stroke="none" />
+    </svg>
+  ),
+  code: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="8 6 2 12 8 18" />
+      <polyline points="16 6 22 12 16 18" />
+    </svg>
+  ),
+  mobile: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="7" y="2" width="10" height="20" rx="2" />
+      <line x1="11" y1="18" x2="13" y2="18" />
+    </svg>
+  ),
+  seo: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="7" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      <path d="M8 11l2 2 4-4" />
+    </svg>
+  ),
+  marketing: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6l-4 4H4a1 1 0 0 0-1 1z" />
+      <path d="M16 8a4 4 0 0 1 0 8" />
+      <path d="M19 5a8 8 0 0 1 0 14" />
+    </svg>
+  ),
+  brand: (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" />
+    </svg>
+  ),
+};
 
 const DEFAULT_SERVICES = [
   {
@@ -41,6 +79,11 @@ const DEFAULT_SERVICES = [
   },
 ];
 
+// Premium "expo-out" easing — smoother deceleration than a plain ease-out,
+// used across the section so every element's entrance feels like one
+// consistent, cinematic motion language instead of default linear easing.
+const EXPO_EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+
 export default function ServiceList({
   eyebrow = "My Services",
   headingLight = "Your Partner For",
@@ -54,23 +97,43 @@ export default function ServiceList({
   reviewCount = "(320 Reviews)",
   services = DEFAULT_SERVICES,
 }) {
+  const sectionRef = useRef(null);
   const [mounted, setMounted] = useState(false);
 
+  // Animation now fires when the section actually scrolls into view,
+  // instead of on page mount, so it's visible/engaging as you scroll
+  // down to it rather than already finished by the time you get there.
   useEffect(() => {
-    const t = requestAnimationFrame(() => setMounted(true));
-    return () => cancelAnimationFrame(t);
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setMounted(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="relative w-full bg-[#161015] py-0 sm:py-24 lg:py-0 lg:pb-8 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative w-full bg-[#161015] py-0 sm:py-24 lg:py-0 lg:pb-8 overflow-hidden"
+    >
       <div className="container mx-auto px-6 sm:px-10 lg:px-20">
           <p
               className={[
                 "inline-flex items-center gap-2 text-[#f4cf9b] font-semibold text-2xl md:text-3xl lg:text-3xl tracking-wide uppercase mb-4",
-                "transition-all duration-700 ease-out",
-                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
+                "transition-all duration-700",
+                mounted ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-3 scale-95",
               ].join(" ")}
-              style={{ transitionDelay: "80ms" }}
+              style={{ transitionDelay: "80ms", transitionTimingFunction: EXPO_EASE }}
             >
               
               {eyebrow}
@@ -80,9 +143,10 @@ export default function ServiceList({
           <div
             className={[
               "relative mx-auto w-full max-w-md aspect-square",
-              "transition-all duration-700 ease-out",
-              mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+              "transition-all duration-[1100ms]",
+              mounted ? "opacity-100 translate-y-0 scale-100 rotate-0" : "opacity-0 translate-y-10 scale-90 -rotate-3",
             ].join(" ")}
+            style={{ transitionDelay: "160ms", transitionTimingFunction: EXPO_EASE }}
           >
             {/* Main circular photo */}
             <div className="absolute inset-0 overflow-hidden rounded-full">
@@ -94,7 +158,14 @@ export default function ServiceList({
             </div>
 
             {/* Small circular inset photo, top-right, overlapping the blob */}
-            <div className="absolute -top-4 right-6 sm:right-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-lg">
+            <div
+              className={[
+                "absolute -top-4 right-6 sm:right-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-lg",
+                "transition-all duration-700",
+                mounted ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-50 rotate-12",
+              ].join(" ")}
+              style={{ transitionDelay: "560ms", transitionTimingFunction: EXPO_EASE }}
+            >
               <img
                 src={insetImage}
                 alt="Studio detail"
@@ -106,7 +177,14 @@ export default function ServiceList({
             
 
             {/* Dark circular badge, bottom-left, overlapping the blob */}
-            <div className="absolute -bottom-4 -left-4 sm:-left-6 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-neutral-900 border border-white/10 text-white flex flex-col items-center justify-center text-center shadow-xl">
+            <div
+              className={[
+                "absolute -bottom-4 -left-4 sm:-left-6 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-neutral-900 border border-white/10 text-white flex flex-col items-center justify-center text-center shadow-xl",
+                "transition-all duration-700",
+                mounted ? "opacity-100 scale-100" : "opacity-0 scale-50",
+              ].join(" ")}
+              style={{ transitionDelay: "700ms", transitionTimingFunction: EXPO_EASE }}
+            >
               <span className="text-2xl sm:text-3xl font-extrabold leading-none">
                 {experienceYears}
               </span>
@@ -123,10 +201,10 @@ export default function ServiceList({
             <h2
               className={[
                 "font-extrabold leading-[1.15] text-3xl sm:text-4xl lg:text-[2.6rem]",
-                "transition-all duration-700 ease-out",
-                mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
+                "transition-all duration-[900ms]",
+                mounted ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm",
               ].join(" ")}
-              style={{ transitionDelay: "160ms" }}
+              style={{ transitionDelay: "260ms", transitionTimingFunction: EXPO_EASE }}
             >
               <span className="text-white/50">{headingLight}</span>{" "}
               <span className="text-white">{headingBold}</span>
@@ -136,10 +214,10 @@ export default function ServiceList({
               <p
                 className={[
                   "text-white/50 text-sm sm:text-base leading-relaxed mt-5 max-w-xl",
-                  "transition-all duration-700 ease-out",
+                  "transition-all duration-700",
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4",
                 ].join(" ")}
-                style={{ transitionDelay: "240ms" }}
+                style={{ transitionDelay: "380ms", transitionTimingFunction: EXPO_EASE }}
               >
                 {intro}
               </p>
@@ -147,27 +225,38 @@ export default function ServiceList({
 
             {/* Your 6 services, replacing the reference's stats row + CTA */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-6 mt-8">
-              {services.map((service, i) => (
-                <div
-                  key={service.title}
-                  className={[
-                    "flex items-start gap-4 pb-6 border-b border-white/10",
-                    "transition-all duration-700 ease-out",
-                    mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6",
-                  ].join(" ")}
-                  style={{ transitionDelay: `${320 + i * 90}ms` }}
-                >
-                  
-                  <div>
-                    <h3 className="text-white font-semibold text-base leading-snug">
-                      {service.title}
-                    </h3>
-                    <p className="text-white/50 text-sm leading-relaxed mt-1">
-                      {service.description}
-                    </p>
+              {services.map((service, i) => {
+                // Alternate the entrance direction left/right per column so the
+                // list "assembles" from both sides instead of one flat rise —
+                // this is the unique, more dynamic reveal for this section.
+                const fromLeft = i % 2 === 0;
+                return (
+                  <div
+                    key={service.title}
+                    className={[
+                      "flex items-start gap-4 pb-6 border-b border-white/10",
+                      "transition-all duration-700 hover:border-white/30 hover:-translate-y-0.5",
+                      mounted
+                        ? "opacity-100 translate-x-0 translate-y-0"
+                        : `opacity-0 translate-y-4 ${fromLeft ? "-translate-x-4" : "translate-x-4"}`,
+                    ].join(" ")}
+                    style={{
+                      transitionDelay: `${520 + i * 110}ms`,
+                      transitionTimingFunction: EXPO_EASE,
+                    }}
+                  >
+                    
+                    <div>
+                      <h3 className="text-white font-semibold text-base leading-snug">
+                        {service.title}
+                      </h3>
+                      <p className="text-white/50 text-sm leading-relaxed mt-1">
+                        {service.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

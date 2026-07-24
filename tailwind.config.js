@@ -15,6 +15,7 @@ module.exports = {
         accent: "#FFD700"
       },
       fontFamily: {
+        bauhaus: ["Bauhaus 93", "sans-serif"],
         outfit: ["Outfit", "sans-serif"]
       }
     },

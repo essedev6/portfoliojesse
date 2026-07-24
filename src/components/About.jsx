@@ -86,7 +86,7 @@ export default function About() {
               </span>
 
               <a
-                href="#about-me"
+                href="/about"
                 className="group inline-flex items-center gap-3 bg-amber-400 hover:bg-amber-300 transition-colors rounded-full pl-6 pr-2 py-2"
               >
                 <span className="text-neutral-900 font-semibold text-sm sm:text-base">

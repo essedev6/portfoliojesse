@@ -6,7 +6,8 @@
   --sidebar-border: #e2e8f0;           /* Sidebar border */
   --text-primary: #1e293b;             /* Main text */
   --text-muted: #64748b;               /* Muted text */
-  --accent: #3b82f6;                   /* Accent color */
+  --accent: #3b82f6;  
+  --font-bauhaus: "Bauhaus 93", sans-serif;                 /* Accent color */
 }
 
 .dark {

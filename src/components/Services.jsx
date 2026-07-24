@@ -44,22 +44,19 @@ const ICONS = {
 
 const DEFAULT_SERVICES = [
   {
-    
+    // No icon property – we'll assign a default fallback
     title: "UI/UX Design",
-    description:
-      "Creating intuitive and beautiful interfaces.",
+    description: "Creating intuitive and beautiful interfaces.",
   },
   {
     icon: "code",
     title: "Web Development",
-    description:
-      "Building responsive, fast, and secure websites.",
+    description: "Building responsive, fast, and secure websites.",
   },
   {
     icon: "mobile",
     title: "Mobile App Design",
-    description:
-      "Designing mobile experiences that are both functional and delightful.",
+    description: "Designing mobile experiences that are both functional and delightful.",
   },
   {
     icon: "seo",
@@ -69,8 +66,7 @@ const DEFAULT_SERVICES = [
   {
     icon: "marketing",
     title: "Digital Marketing",
-    description:
-      "Strategies to grow your online presence and drive traffic.",
+    description: "Strategies to grow your online presence and drive traffic.",
   },
   {
     icon: "brand",
@@ -79,9 +75,6 @@ const DEFAULT_SERVICES = [
   },
 ];
 
-// Premium "expo-out" easing — smoother deceleration than a plain ease-out,
-// used across the section so every element's entrance feels like one
-// consistent, cinematic motion language instead of default linear easing.
 const EXPO_EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 export default function ServiceList({
@@ -100,13 +93,9 @@ export default function ServiceList({
   const sectionRef = useRef(null);
   const [mounted, setMounted] = useState(false);
 
-  // Animation now fires when the section actually scrolls into view,
-  // instead of on page mount, so it's visible/engaging as you scroll
-  // down to it rather than already finished by the time you get there.
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -116,7 +105,6 @@ export default function ServiceList({
       },
       { threshold: 0.2 }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
@@ -127,19 +115,18 @@ export default function ServiceList({
       className="relative w-full bg-[#161015] py-0 sm:py-24 lg:py-0 lg:pb-8 overflow-hidden"
     >
       <div className="container mx-auto px-6 sm:px-10 lg:px-20">
-          <p
-              className={[
-                "inline-flex items-center gap-2 text-[#f4cf9b] font-semibold text-2xl md:text-3xl lg:text-3xl tracking-wide uppercase mb-4",
-                "transition-all duration-700",
-                mounted ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-3 scale-95",
-              ].join(" ")}
-              style={{ transitionDelay: "80ms", transitionTimingFunction: EXPO_EASE }}
-            >
-              
-              {eyebrow}
-            </p>
+        <p
+          className={[
+            "inline-flex items-center gap-2 text-[#f4cf9b] font-semibold text-2xl md:text-3xl lg:text-3xl tracking-wide uppercase mb-4",
+            "transition-all duration-700",
+            mounted ? "opacity-100 translate-y-0 scale-100" : "opacity-0 -translate-y-3 scale-95",
+          ].join(" ")}
+          style={{ transitionDelay: "80ms", transitionTimingFunction: EXPO_EASE }}
+        >
+          {eyebrow}
+        </p>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
-          {/* ---------- Left: image cluster ---------- */}
+          {/* Left image cluster */}
           <div
             className={[
               "relative mx-auto w-full max-w-md aspect-square",
@@ -150,14 +137,10 @@ export default function ServiceList({
           >
             {/* Main circular photo */}
             <div className="absolute inset-0 overflow-hidden rounded-full">
-              <img
-                src={mainImage}
-                alt="Our team at work"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              <img src={mainImage} alt="Our team at work" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
-            {/* Small circular inset photo, top-right, overlapping the blob */}
+            {/* Inset photo */}
             <div
               className={[
                 "absolute -top-4 right-6 sm:right-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white shadow-lg",
@@ -166,17 +149,10 @@ export default function ServiceList({
               ].join(" ")}
               style={{ transitionDelay: "560ms", transitionTimingFunction: EXPO_EASE }}
             >
-              <img
-                src={insetImage}
-                alt="Studio detail"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+              <img src={insetImage} alt="Studio detail" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
-            {/* Google review badge, top-left, overlapping the blob */}
-            
-
-            {/* Dark circular badge, bottom-left, overlapping the blob */}
+            {/* Experience badge */}
             <div
               className={[
                 "absolute -bottom-4 -left-4 sm:-left-6 w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-neutral-900 border border-white/10 text-white flex flex-col items-center justify-center text-center shadow-xl",
@@ -185,19 +161,13 @@ export default function ServiceList({
               ].join(" ")}
               style={{ transitionDelay: "700ms", transitionTimingFunction: EXPO_EASE }}
             >
-              <span className="text-2xl sm:text-3xl font-extrabold leading-none">
-                {experienceYears}
-              </span>
-              <span className="text-xs sm:text-sm text-white/80 mt-1 leading-tight px-4">
-                {experienceLabel}
-              </span>
+              <span className="text-2xl sm:text-3xl font-extrabold leading-none">{experienceYears}</span>
+              <span className="text-xs sm:text-sm text-white/80 mt-1 leading-tight px-4">{experienceLabel}</span>
             </div>
           </div>
 
-          {/* ---------- Right: eyebrow + heading + your 6 services ---------- */}
+          {/* Right content */}
           <div>
-           
-
             <h2
               className={[
                 "font-extrabold leading-[1.15] text-3xl sm:text-4xl lg:text-[2.6rem]",
@@ -223,13 +193,12 @@ export default function ServiceList({
               </p>
             )}
 
-            {/* Your 6 services, replacing the reference's stats row + CTA */}
+            {/* Services grid with icons */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-x-8 gap-y-6 mt-8">
               {services.map((service, i) => {
-                // Alternate the entrance direction left/right per column so the
-                // list "assembles" from both sides instead of one flat rise —
-                // this is the unique, more dynamic reveal for this section.
                 const fromLeft = i % 2 === 0;
+                // Use a default fallback icon (UI/UX) if service.icon is missing
+                const iconElement = service.icon ? ICONS[service.icon] : ICONS.uiux;
                 return (
                   <div
                     key={service.title}
@@ -245,7 +214,10 @@ export default function ServiceList({
                       transitionTimingFunction: EXPO_EASE,
                     }}
                   >
-                    
+                    {/* Icon */}
+                    <div className="flex-shrink-0 text-[#f4cf9b] mt-1">
+                      {iconElement}
+                    </div>
                     <div>
                       <h3 className="text-white font-semibold text-base leading-snug">
                         {service.title}
